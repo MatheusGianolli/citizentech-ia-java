@@ -34,7 +34,7 @@ Este projeto **não utiliza dados simulados ou condicionais estáticas (`if/else
 *(Arraste e solte os prints da aplicação rodando nestes espaços abaixo)*
 
 **1. Interface do Sistema (Frontend)**
-> `[INSIRA O PRINT DA TELA INICIAL AQUI]<img width="1855" height="953" alt="print1" src="https://github.com/user-attachments/assets/050ddcc8-ec79-4526-a893-52beb45165f5" />
+> <img width="1855" height="953" alt="print1" src="https://github.com/user-attachments/assets/050ddcc8-ec79-4526-a893-52beb45165f5" />
 `
 
 **2. IA Processando um Cenário Real (Ex: Centro)**
