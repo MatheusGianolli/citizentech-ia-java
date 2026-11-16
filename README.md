@@ -38,10 +38,12 @@ Este projeto **não utiliza dados simulados ou condicionais estáticas (`if/else
 `
 
 **2. IA Processando um Cenário Real (Ex: Centro)**
-> `[INSIRA O PRINT DO RESULTADO DO RISCO AQUI]`
+> <img width="1917" height="962" alt="print2" src="https://github.com/user-attachments/assets/991a3239-74cb-4914-84c6-e82fee42b7d4" />
 
-**3. IA Adaptando-se a Cenários Extremos/Incomuns**
-> `[INSIRA O PRINT DO TESTE DA 'BASE ESPACIAL' OU 'BECO SEM SAÍDA' AQUI]`
+
+**3. IA Adaptando-se a Cenários Extremos/Incomuns**  PODE SER USADO QUALQUER LOCALIZAÇÃO DO MUNDO(OU NÃO) QUE A IA IRA RESPONDER E SE ADAPTAR
+> <img width="1895" height="966" alt="rint3" src="https://github.com/user-attachments/assets/0f6898ba-0659-423d-8209-2507dd303839" />
+
 
 ---
 
