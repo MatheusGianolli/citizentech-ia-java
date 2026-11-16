@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CitizenTech - Central de Segurança IA</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        h1 {
+            color: #1a365d;
+            text-align: center;
+            margin-top: 0;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #3182ce;
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.1);
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #3182ce;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #2b6cb0;
+        }
+        button:disabled {
+            background-color: #a0aec0;
+            cursor: not-allowed;
+        }
+        .loading {
+            text-align: center;
+            display: none;
+            margin-top: 20px;
+            color: #718096;
+            font-weight: 500;
+        }
+        #resultado {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ebf8ff;
+            border-left: 5px solid #3182ce;
+            display: none;
+            white-space: pre-wrap; /* Mantém a quebra de linha da IA */
+            font-size: 15px;
+            line-height: 1.6;
+            color: #2c5282;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🛡️ CitizenTech IA</h1>
+
+    <div class="form-group">
+        <label>Região da Cidade:</label>
+        <input type="text" id="regiao" placeholder="Ex: Centro, Avenida Paulista..." required>
+    </div>
+
+    <div class="form-group">
+        <label>Ocorrências Registradas:</label>
+        <input type="number" id="ocorrencias" placeholder="Ex: 15" required>
+    </div>
+
+    <button id="btnAnalisar" onclick="analisar()">Analisar Risco</button>
+
+    <div class="loading" id="loading">Consultando IA do Google... ⏳</div>
+    <div id="resultado"></div>
+</div>
+
+<script>
+    async function analisar() {
+        const regiao = document.getElementById('regiao').value;
+        const ocorrencias = document.getElementById('ocorrencias').value;
+        const btn = document.getElementById('btnAnalisar');
+        const loading = document.getElementById('loading');
+        const resultado = document.getElementById('resultado');
+
+        if(!regiao || !ocorrencias) {
+            alert("Por favor, preencha a região e o número de ocorrências.");
+            return;
+        }
+
+        // Prepara a tela para carregar
+        btn.disabled = true;
+        loading.style.display = 'block';
+        resultado.style.display = 'none';
+
+        try {
+            // Bate exatamente na rota Java que nós construímos
+            const url = `/testar-ia?regiao=${encodeURIComponent(regiao)}&ocorrencias=${encodeURIComponent(ocorrencias)}`;
+            const response = await fetch(url);
+            const textoPlanoDaIA = await response.text();
+
+            // Exibe o resultado bonitinho na tela
+            resultado.innerText = textoPlanoDaIA;
+            resultado.style.display = 'block';
+        } catch (error) {
+            resultado.innerText = "Erro ao conectar com a IA: " + error.message;
+            resultado.style.display = 'block';
+        } finally {
+            // Restaura o botão
+            btn.disabled = false;
+            loading.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>
